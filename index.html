@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -8,6 +8,27 @@
       Final Submission: Building a Single-Page Application + API, Context, and
       Hooks | Dicoding BFAWDR
     </title>
+    <script defer>
+      // Tailwind CSS Dark/Light Startup Mode
+      if (
+        localStorage.getItem('theme') === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      // i18n Startup Mode
+      const langInfo = JSON.parse(localStorage.getItem('langInfo'));
+
+      if (langInfo) {
+        document.documentElement.lang = langInfo.langCode;
+      } else {
+        document.documentElement.lang = 'en';
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
