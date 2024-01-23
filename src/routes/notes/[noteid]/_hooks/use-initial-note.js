@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AuthContext } from '../../../../contexts/contexts';
-import FetchError from '../../../../exceptions/FetchError.js';
-import { getNote } from '../../../../utilities/network-data.js';
+import FetchError from '../../../../exceptions/FetchError';
+import useAuth from '../../../../hooks/use-auth';
+import { getNote } from '../../../../utilities/network-data';
 
 const useInitialNote = ({ setNote }) => {
   const [fetchOnce, setFetchOnce] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const { userAuth } = useContext(AuthContext);
-
   const { noteId } = useParams();
+
+  const { userAuth } = useAuth();
 
   useEffect(() => {
     const abortController = new AbortController();

@@ -2,38 +2,43 @@ import cn from 'classnames';
 import { Dropdown } from 'primereact/dropdown';
 import { InputSwitch } from 'primereact/inputswitch';
 import PropTypes from 'prop-types';
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import ButtonIconPrimary from '../../components/ButtonIconPrimary';
-import { LanguageContext, ThemeContext } from '../../contexts/contexts';
+import useLang from '../../hooks/use-lang';
+import useTheme from '../../hooks/use-theme';
 
 export default function NavBoardSettings({
   showSettings,
   handleCloseSettings,
 }) {
-  const { theme, changeTheme } = useContext(ThemeContext);
-  const { lang, langCode, changeLang, switchLang } =
-    useContext(LanguageContext);
+  const { theme, changeTheme } = useTheme();
+  const { lang, langCode, changeLang, switchLang } = useLang();
 
   const langValueOption = useMemo(() => ({ lang, langCode }), [lang, langCode]);
 
+  const langOptions = useMemo(
+    () => [
+      { lang: 'English', langCode: 'en' },
+      { lang: 'Indonesia', langCode: 'id' },
+    ],
+    [],
+  );
+
   const isDarkTheme = theme === 'dark';
 
-  const langOptions = [
-    { lang: 'English', langCode: 'en' },
-    { lang: 'Indonesia', langCode: 'id' },
-  ];
-
   const handleTheme = () => {
-    if (theme === 'dark') {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
+    const htmlElem = document.documentElement;
 
-    changeTheme();
+    if (theme === 'dark') {
+      localStorage.setItem('theme', 'light');
+      htmlElem.classList.remove('dark');
+      changeTheme('light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      htmlElem.classList.add('dark');
+      changeTheme('dark');
+    }
   };
 
   const handleLang = (ev) => {

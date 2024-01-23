@@ -3,21 +3,8 @@ import { useCallback, useMemo, useState } from 'react';
 import { LanguageContext } from './contexts';
 
 export default function LanguageContextProvider({ children }) {
-  const [lang, setLang] = useState(() => {
-    const langInfo = JSON.parse(localStorage.getItem('langInfo'));
-
-    if (langInfo) return langInfo.lang;
-
-    return 'English';
-  });
-
-  const [langCode, setLangCode] = useState(() => {
-    const langInfo = JSON.parse(localStorage.getItem('langInfo'));
-
-    if (langInfo) return langInfo.langCode;
-
-    return 'en';
-  });
+  const [lang, setLang] = useState(null);
+  const [langCode, setLangCode] = useState(null);
 
   const changeLang = ({ lang, langCode }) => {
     setLang(() => lang);

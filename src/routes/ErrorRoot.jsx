@@ -1,12 +1,12 @@
-import { useContext } from 'react';
 import { useRouteError } from 'react-router-dom';
 import somethingWentWrongSvg from '../assets/something-went-wrong-illustration.svg';
-import { LanguageContext } from '../contexts/contexts.js';
-import PageLayout from './_route-components/PageLayout.jsx';
+import useLang from '../hooks/use-lang';
+import PageLayout from './_components/PageLayout.jsx';
 
 export default function ErrorRootRoute() {
-  const { switchLang } = useContext(LanguageContext);
   const routeError = useRouteError();
+
+  const { switchLang } = useLang();
 
   return (
     <PageLayout>

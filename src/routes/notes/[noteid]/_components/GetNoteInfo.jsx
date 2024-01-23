@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import failedNoteSvg from '../../../../assets/failed-note-illustration.svg';
 import loadingNoteSvg from '../../../../assets/loading-note-illustration.svg';
-import { LanguageContext } from '../../../../contexts/contexts.js';
+import useLang from '../../../../hooks/use-lang';
 
 export default function GetNoteInfo({ isLoadingState, isFailedState }) {
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   return (
     <div className="h-full">

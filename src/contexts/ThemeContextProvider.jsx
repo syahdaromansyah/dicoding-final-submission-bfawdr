@@ -3,12 +3,12 @@ import { useMemo, useState } from 'react';
 import { ThemeContext } from './contexts';
 
 export default function ThemeContextProvider({ children }) {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem('theme') || 'dark',
-  );
+  const [theme, setTheme] = useState(null);
 
-  const changeTheme = () =>
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+  const changeTheme = (themeValue) => {
+    if (themeValue === 'light') setTheme(() => 'light');
+    else setTheme(() => 'dark');
+  };
 
   const contextValue = useMemo(
     () => ({

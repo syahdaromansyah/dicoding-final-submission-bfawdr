@@ -1,15 +1,15 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Alert from '../../../components/Alert.jsx';
-import { LanguageContext } from '../../../contexts/contexts.js';
-import { deleteNote, unarchiveNote } from '../../../utilities/network-data.js';
-import NoteList from '../../_route-components/NoteList/NoteList.jsx';
-import useAlert from '../../_route-custom-hooks/use-alert.js';
-import useNotes from '../../_route-custom-hooks/use-notes.js';
+import useLang from '../../../hooks/use-lang';
+import { deleteNote, unarchiveNote } from '../../../utilities/network-data';
+import NoteList from '../../_components/NoteList/NoteList.jsx';
+import useAlert from '../../_hooks/use-alert';
+import useNotes from '../../_hooks/use-notes';
 
 export default function ArchivedNotesRootRoute() {
   const [notesOperation, setNotesOperation] = useState(() => ({}));
 
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   const { notes, loadingNotes, refreshNote, deleteNoteById } = useNotes({
     isActiveNotes: false,

@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
-import { LanguageContext } from '../../../../contexts/contexts';
+import useLang from '../../../../hooks/use-lang';
 
 export default function NavBoardProfile({ fullName, email, handleSignOut }) {
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   const [firstName] = fullName.split(' ');
 

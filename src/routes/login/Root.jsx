@@ -1,32 +1,33 @@
-import { useContext, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { FaArrowRightLong, FaGear } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../../components/Alert.jsx';
 import ButtonIconPrimary from '../../components/ButtonIconPrimary';
-import { AuthContext, LanguageContext } from '../../contexts/contexts';
-import AuthError from '../../exceptions/AuthError.js';
-import LoginError from '../../exceptions/LoginError.js';
+import AuthError from '../../exceptions/AuthError';
+import LoginError from '../../exceptions/LoginError';
+import useAuth from '../../hooks/use-auth';
+import useLang from '../../hooks/use-lang';
 import {
   getUserLogged,
   login,
   putAccessToken,
-} from '../../utilities/network-data.js';
-import AuthInput from '../_route-components/AuthInput';
-import NavBoardSettings from '../_route-components/NavBoardSettings';
-import useAlert from '../_route-custom-hooks/use-alert.js';
-import useInput from '../_route-custom-hooks/use-input.js';
+} from '../../utilities/network-data';
+import AuthInput from '../_components/AuthInput';
+import NavBoardSettings from '../_components/NavBoardSettings';
+import useAlert from '../_hooks/use-alert';
+import useInput from '../_hooks/use-input';
 
 export default function LoginRootRoute() {
+  const inputId = useId();
+
   const [showSettings, setShowSettings] = useState(false);
   const [loadingLogin, setLoadingLogin] = useState(false);
 
-  const { switchLang } = useContext(LanguageContext);
-  const { updateUserAuth } = useContext(AuthContext);
-
-  const inputId = useId();
-
   const navigate = useNavigate();
+
+  const { switchLang } = useLang();
+  const { updateUserAuth } = useAuth();
 
   const {
     alertIsShown,

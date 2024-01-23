@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import errorNotFoundSvg from '../assets/not-found-page-illustration.svg';
-import { LanguageContext } from '../contexts/contexts.js';
+import useLang from '../hooks/use-lang';
 
 export default function NotFoundRoute() {
-  const { switchLang } = useContext(LanguageContext);
-
   const location = useLocation();
+
+  const { switchLang } = useLang();
 
   const pathName = location.pathname;
 

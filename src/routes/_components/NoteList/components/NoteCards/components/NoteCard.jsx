@@ -1,14 +1,14 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { FaTrashCan } from 'react-icons/fa6';
 import { MdArchive, MdUnarchive } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import MarkdownContent from '../../../../../../components/MarkdownContent.jsx';
-import { LanguageContext } from '../../../../../../contexts/contexts.js';
-import showFormattedDate from '../../../../../../utilities/show-formatted-date.js';
+import useLang from '../../../../../../hooks/use-lang';
+import showFormattedDate from '../../../../../../utilities/show-formatted-date';
 
 export default function NoteCard({
   noteData,
@@ -20,7 +20,7 @@ export default function NoteCard({
 }) {
   const [showNoteOptions, setShowNoteOptions] = useState(false);
 
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   const handleShowNoteOptions = () => {
     setShowNoteOptions((prevShowNoteOptions) => !prevShowNoteOptions);

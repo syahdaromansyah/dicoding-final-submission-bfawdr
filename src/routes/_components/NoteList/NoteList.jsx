@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useSearchParams } from 'react-router-dom';
-import { LanguageContext } from '../../../contexts/contexts.js';
-import EmptyNotesInfo from './_sub-components/EmptyNotesInfo.jsx';
-import LoadingNotesInfo from './_sub-components/LoadingNotesInfo.jsx';
-import NoteCards from './_sub-components/NoteCards/NoteCards.jsx';
-import SearchNoteInput from './_sub-components/SearchNotesInput.jsx';
+import useLang from '../../../hooks/use-lang';
+import EmptyNotesInfo from './components/EmptyNotesInfo.jsx';
+import LoadingNotesInfo from './components/LoadingNotesInfo.jsx';
+import NoteCards from './components/NoteCards/NoteCards.jsx';
+import SearchNoteInput from './components/SearchNotesInput.jsx';
 
 export default function NoteList({
   notes,
@@ -18,9 +17,9 @@ export default function NoteList({
   handleDeleteNote,
   handleRefreshNotes,
 }) {
-  const { switchLang } = useContext(LanguageContext);
-
   const [searchParams] = useSearchParams();
+
+  const { switchLang } = useLang();
 
   const searchNotesParams = searchParams.get('title') || '';
 

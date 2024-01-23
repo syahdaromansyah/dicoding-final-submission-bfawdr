@@ -1,19 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../contexts/contexts.js';
 import AuthError from '../exceptions/AuthError.js';
-import { getUserLogged } from '../utilities/network-data.js';
-import PageLayout from './_route-components/PageLayout.jsx';
-import SignInPageLayout from './_route-components/SignInPageLayout/SignInPageLayout.jsx';
+import useAuth from '../hooks/use-auth';
+import { getUserLogged } from '../utilities/network-data';
+import PageLayout from './_components/PageLayout.jsx';
+import SignInPageLayout from './_components/SignInPageLayout/SignInPageLayout.jsx';
 
 const useInitAuth = () => {
   const [fetchOnce, setFetchOnce] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const { userAuth, updateUserAuth } = useContext(AuthContext);
-
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { userAuth, updateUserAuth } = useAuth();
 
   const pathName = location.pathname;
 
@@ -65,14 +65,13 @@ const useInitAuth = () => {
   }, [navigate, pathName, userAuth]);
 
   return {
+    userAuth,
     loadingInitAuth: loading,
   };
 };
 
 export default function RootRoute() {
-  const { userAuth } = useContext(AuthContext);
-
-  const { loadingInitAuth } = useInitAuth();
+  const { userAuth, loadingInitAuth } = useInitAuth();
 
   return (
     <>

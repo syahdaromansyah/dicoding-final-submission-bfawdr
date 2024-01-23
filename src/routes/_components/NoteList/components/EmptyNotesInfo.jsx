@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import emptyNotesSvg from '../../../../assets/empty-data-illustration.svg';
-import { LanguageContext } from '../../../../contexts/contexts.js';
+import useLang from '../../../../hooks/use-lang';
 
 export default function EmptyNotesInfo({ isActiveNotes }) {
-  const { switchLang } = useContext(LanguageContext);
-
   const [searchParams] = useSearchParams();
+
+  const { switchLang } = useLang();
 
   const searchNotesParams = searchParams.get('title') || '';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import AppContextProvider from './app-context-provider.jsx';
 import AppPrimeReactProvider from './app-primereact-provider.jsx';
-import AppRouter from './app-router.jsx';
+import App from './app.jsx';
 import './index.css';
 
 async function enableMSW() {
@@ -20,7 +20,7 @@ async function startApp() {
     <React.StrictMode>
       <AppContextProvider>
         <AppPrimeReactProvider>
-          <AppRouter />
+          <App />
         </AppPrimeReactProvider>
       </AppContextProvider>
     </React.StrictMode>,

@@ -1,25 +1,25 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { FaBars, FaGear } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext, LanguageContext } from '../../../contexts/contexts.js';
+import useAuth from '../../../hooks/use-auth';
+import useLang from '../../../hooks/use-lang';
 import NavBoardSettings from '../NavBoardSettings.jsx';
 import PageLayout from '../PageLayout.jsx';
-import NavBoardNavLinks from './_sub-components/NavBoardNavLinks/NavBoardNavLinks.jsx';
-import NavBoardProfile from './_sub-components/NavBoardProfile.jsx';
+import NavBoardNavLinks from './components/NavBoardNavLinks/NavBoardNavLinks.jsx';
+import NavBoardProfile from './components/NavBoardProfile.jsx';
 
 export default function SignInPageLayout({ children }) {
   const [showNav, setShowNav] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
-  const { switchLang } = useContext(LanguageContext);
-  const { userAuth, updateUserAuth } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
-  const handleShowNav = () => setShowNav(() => true);
+  const { switchLang } = useLang();
+  const { userAuth, updateUserAuth } = useAuth();
 
+  const handleShowNav = () => setShowNav(() => true);
   const handleCloseNav = () => setShowNav(() => false);
 
   const handleShowMobSettings = () => {

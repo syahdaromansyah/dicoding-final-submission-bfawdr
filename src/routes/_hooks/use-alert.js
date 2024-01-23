@@ -3,10 +3,12 @@ import { useState } from 'react';
 const useAlert = () => {
   const [isShown, setIsShown] = useState(false);
   const [severity, setSeverity] = useState('success');
+
   const [title, setTitle] = useState(() => ({
     en: 'Note title',
     id: 'Judul catatan',
   }));
+
   const [message, setMessage] = useState(() => ({
     en: 'Note message',
     id: 'Pesan catatan',

@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
-import { useContext, useId } from 'react';
+import { useId } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { LanguageContext } from '../../../../contexts/contexts';
+import useLang from '../../../../hooks/use-lang';
 
 export default function SearchNoteInput({ disabled }) {
-  const { switchLang } = useContext(LanguageContext);
-
   const inputId = useId();
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { switchLang } = useLang();
 
   const handleSearchNote = (ev) => {
     if (disabled) return;

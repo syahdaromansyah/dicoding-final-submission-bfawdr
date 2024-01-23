@@ -1,15 +1,16 @@
 import MDEditor from '@uiw/react-md-editor';
 import cn from 'classnames';
-import { useContext, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { FaMarkdown, FaRegCircleCheck } from 'react-icons/fa6';
 import rehypeSanitize from 'rehype-sanitize';
 import Alert from '../../../components/Alert.jsx';
 import ButtonIconPrimary from '../../../components/ButtonIconPrimary.jsx';
 import MarkdownContent from '../../../components/MarkdownContent';
-import { LanguageContext, ThemeContext } from '../../../contexts/contexts';
-import { addNote } from '../../../utilities/network-data.js';
-import useAlert from '../../_route-custom-hooks/use-alert.js';
+import useLang from '../../../hooks/use-lang';
+import useTheme from '../../../hooks/use-theme';
+import { addNote } from '../../../utilities/network-data';
+import useAlert from '../../_hooks/use-alert';
 
 const customMDEditorComponents = {
   preview: (source) => {
@@ -24,8 +25,8 @@ export default function AddNoteRootRoute() {
   const [bodyNote, setBodyNote] = useState('');
   const [loadingSaveNote, setLoadingSaveNote] = useState(false);
 
-  const { theme } = useContext(ThemeContext);
-  const { switchLang } = useContext(LanguageContext);
+  const { theme } = useTheme();
+  const { switchLang } = useLang();
 
   const {
     alertIsShown,

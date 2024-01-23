@@ -1,31 +1,31 @@
-import { useContext, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { FaArrowRightLong, FaGear } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../../components/Alert.jsx';
 import ButtonIconPrimary from '../../components/ButtonIconPrimary';
-import { LanguageContext } from '../../contexts/contexts';
-import RegisterError from '../../exceptions/RegisterError.js';
-import { register } from '../../utilities/network-data.js';
-import AuthInput from '../_route-components/AuthInput';
-import NavBoardSettings from '../_route-components/NavBoardSettings';
-import useAlert from '../_route-custom-hooks/use-alert.js';
-import useInput from '../_route-custom-hooks/use-input.js';
+import RegisterError from '../../exceptions/RegisterError';
+import useLang from '../../hooks/use-lang';
+import { register } from '../../utilities/network-data';
+import AuthInput from '../_components/AuthInput';
+import NavBoardSettings from '../_components/NavBoardSettings';
+import useAlert from '../_hooks/use-alert';
+import useInput from '../_hooks/use-input';
 
 export default function RegisterRootRoute() {
   const inputId = useId();
 
-  const navigate = useNavigate();
-
   const [showSettings, setShowSettings] = useState(false);
   const [loadingRegister, setLoadingRegister] = useState(false);
+
+  const navigate = useNavigate();
 
   const [nameInput, handleNameInput] = useInput();
   const [emailInput, handleEmailInput] = useInput();
   const [passwordInput, handlePasswordInput] = useInput();
   const [confirmedPassInput, handleConfirmedPassInput] = useInput();
 
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   const {
     alertIsShown,

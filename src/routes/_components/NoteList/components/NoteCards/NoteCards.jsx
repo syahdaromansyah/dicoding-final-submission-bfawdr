@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import NoteCard from './_sub-components/NoteCard.jsx';
+import NoteCard from './components/NoteCard.jsx';
 
 export default function NoteCards({
   isActiveNotes,

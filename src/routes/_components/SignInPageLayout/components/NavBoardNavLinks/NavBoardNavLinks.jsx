@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { FaBoxArchive, FaListUl, FaPlus } from 'react-icons/fa6';
-import { LanguageContext } from '../../../../../contexts/contexts.js';
-import NavBoardNavLink from './_sub-components/NavBoardNavLink.jsx';
+import useLang from '../../../../../hooks/use-lang';
+import NavBoardNavLink from './components/NavBoardNavLink.jsx';
 
 export default function NavBoardNavLinks({ handleClick = () => null }) {
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   const navLinks = [
     {

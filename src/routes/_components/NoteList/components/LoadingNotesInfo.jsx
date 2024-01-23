@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import loadingNotesSvg from '../../../../assets/loading-notes-illustration.svg';
-import { LanguageContext } from '../../../../contexts/contexts.js';
+import useLang from '../../../../hooks/use-lang';
 
 export default function LoadingNotesInfo({ isActiveNotes }) {
-  const { switchLang } = useContext(LanguageContext);
+  const { switchLang } = useLang();
 
   return (
     <div className="h-full">

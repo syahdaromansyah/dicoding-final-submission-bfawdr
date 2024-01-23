@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { FaTrashCan } from 'react-icons/fa6';
@@ -7,28 +7,26 @@ import { MdArchive, MdUnarchive } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import Alert from '../../../components/Alert.jsx';
 import MarkdownContent from '../../../components/MarkdownContent';
-import { LanguageContext } from '../../../contexts/contexts';
+import useLang from '../../../hooks/use-lang';
 import {
   archiveNote,
   deleteNote,
   unarchiveNote,
-} from '../../../utilities/network-data.js';
+} from '../../../utilities/network-data';
 import showFormattedDate from '../../../utilities/show-formatted-date';
-import useAlert from '../../_route-custom-hooks/use-alert.js';
-import useInitialNote from './_custom-hooks/use-initial-note.js';
-import GetNoteInfo from './_route-components/GetNoteInfo.jsx';
+import useAlert from '../../_hooks/use-alert';
+import GetNoteInfo from './_components/GetNoteInfo.jsx';
+import useInitialNote from './_hooks/use-initial-note.js';
 
 export default function NoteDetailRootRoute() {
   const [note, setNote] = useState(null);
   const [loadingNoteOp, setLoadingNoteOp] = useState('none');
   const [showNoteOptions, setShowNoteOptions] = useState(false);
 
-  const { switchLang } = useContext(LanguageContext);
-
   const navigate = useNavigate();
-
   const { noteId } = useParams();
 
+  const { switchLang } = useLang();
   const { loadingInitNote } = useInitialNote({ setNote });
 
   const {
